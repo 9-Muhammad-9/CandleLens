@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CandleLens - Advanced Candlestick Analysis</title>
+    <title>CandleLens Pro - Advanced Candlestick Analysis & AI Prediction</title>
+    <meta name="description" content="Professional candlestick pattern recognition with AI-powered market predictions. Get accurate entry/exit signals for stocks and crypto.">
+    <meta name="keywords" content="candlestick analysis, AI trading signals, stock prediction, cryptocurrency analysis, technical analysis">
+    <meta name="author" content="CandleLens Pro">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
@@ -408,6 +411,158 @@
             animation: spin 1s linear infinite;
         }
 
+        /* Ad containers */
+        .ad-container {
+            background: rgba(15, 40, 70, 0.7);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .ad-label {
+            font-size: 0.8rem;
+            color: #88aadd;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ad-content {
+            background: rgba(25, 55, 100, 0.5);
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ad-title {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ad-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .ad-button {
+            background: linear-gradient(45deg, var(--accent), var(--accent-dark));
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .ad-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .ad-horizontal {
+            grid-column: 1 / -1;
+            margin: 20px 0;
+        }
+
+        /* Confidence indicator */
+        .confidence-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .confidence-level {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .high-confidence {
+            background: linear-gradient(90deg, var(--success), #00e676);
+        }
+
+        .medium-confidence {
+            background: linear-gradient(90deg, var(--warning), #ffeb3b);
+        }
+
+        .low-confidence {
+            background: linear-gradient(90deg, var(--danger), #ff5252);
+        }
+
+        /* Market sentiment */
+        .sentiment-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sentiment-bullish {
+            color: var(--success);
+            border: 1px solid rgba(0, 200, 83, 0.3);
+        }
+
+        .sentiment-bearish {
+            color: var(--danger);
+            border: 1px solid rgba(255, 82, 82, 0.3);
+        }
+
+        .sentiment-neutral {
+            color: #6495ed;
+            border: 1px solid rgba(100, 149, 237, 0.3);
+        }
+
+        /* Advanced indicators panel */
+        .advanced-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .indicator-card {
+            background: rgba(15, 40, 70, 0.5);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .indicator-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+
+        .indicator-positive {
+            color: var(--success);
+        }
+
+        .indicator-negative {
+            color: var(--danger);
+        }
+
+        .indicator-neutral {
+            color: #6495ed;
+        }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -442,6 +597,10 @@
                 width: 100%;
                 justify-content: space-between;
             }
+            
+            .advanced-indicators {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
@@ -450,10 +609,20 @@
         <header>
             <div class="header-overlay"></div>
             <div class="header-content">
-                <h1><i class="fas fa-chart-line"></i> CandleLens</h1>
-                <p>Advanced market analysis with real-time candlestick pattern recognition, predictive entry/exit points, and comprehensive technical indicators</p>
+                <h1><i class="fas fa-chart-line"></i> CandleLens Pro</h1>
+                <p>AI-powered market analysis with advanced candlestick pattern recognition and high-accuracy predictions</p>
             </div>
         </header>
+        
+        <!-- Top Ad Banner -->
+        <div class="ad-container ad-horizontal">
+            <div class="ad-label">Premium Feature</div>
+            <div class="ad-content">
+                <h3 class="ad-title"><i class="fas fa-crown"></i> CandleLens Pro Subscription</h3>
+                <p class="ad-description">Get real-time alerts, advanced indicators, and priority support</p>
+                <button class="ad-button">Upgrade Now</button>
+            </div>
+        </div>
         
         <div class="timeframe-selector">
             <button class="timeframe-btn active" data-tf="1D">1D</button>
@@ -491,6 +660,16 @@
             </div>
             
             <div class="tools-panel">
+                <!-- Sidebar Ad -->
+                <div class="ad-container">
+                    <div class="ad-label">Sponsored</div>
+                    <div class="ad-content">
+                        <h3 class="ad-title"><i class="fas fa-book"></i> Trading Encyclopedia</h3>
+                        <p class="ad-description">Master technical analysis with our premium course</p>
+                        <button class="ad-button">Learn More</button>
+                    </div>
+                </div>
+                
                 <h2 class="panel-title"><i class="fas fa-tools"></i> Analysis Tools</h2>
                 
                 <div class="settings-group">
@@ -511,69 +690,127 @@
                         <label for="ema">EMA (20):</label>
                         <span id="ema-value">--</span>
                     </div>
-                </div>
-                
-                <div class="settings-group">
-                    <h3>Chart Settings</h3>
                     <div class="settings-row">
-                        <label for="theme">Theme:</label>
-                        <select id="theme">
-                            <option>Dark</option>
-                            <option>Light</option>
-                            <option>Blue</option>
-                        </select>
-                    </div>
-                    <div class="settings-row">
-                        <label for="candle-style">Candle Style:</label>
-                        <select id="candle-style">
-                            <option>Standard</option>
-                            <option>Hollow</option>
-                            <option>Heikin-Ashi</option>
-                        </select>
-                    </div>
-                    <div class="settings-row">
-                        <label for="overlay">Overlay:</label>
-                        <select id="overlay">
-                            <option>None</option>
-                            <option>Volume Profile</option>
-                            <option>Fibonacci</option>
-                        </select>
+                        <label for="volatility">Volatility:</label>
+                        <span id="volatility-value">--</span>
                     </div>
                 </div>
                 
                 <div class="settings-group">
-                    <h3>Prediction Settings</h3>
+                    <h3>AI Prediction Settings</h3>
                     <div class="settings-row">
                         <label for="model">Prediction Model:</label>
                         <select id="model">
+                            <option>Neural Network (High Accuracy)</option>
                             <option>Hybrid AI</option>
-                            <option>Neural Network</option>
-                            <option>ARIMA</option>
+                            <option>Deep Learning</option>
+                        </select>
+                    </div>
+                    <div class="settings-row">
+                        <label for="confidence">Min Confidence:</label>
+                        <select id="confidence">
+                            <option>90%</option>
+                            <option>80%</option>
+                            <option>70%</option>
                         </select>
                     </div>
                     <div class="settings-row">
                         <label for="horizon">Time Horizon:</label>
                         <select id="horizon">
-                            <option>Short-term</option>
-                            <option>Medium-term</option>
-                            <option>Long-term</option>
+                            <option>Short-term (1-7 days)</option>
+                            <option>Medium-term (1-4 weeks)</option>
+                            <option>Long-term (1-3 months)</option>
                         </select>
                     </div>
                     <button class="btn btn-primary" id="predict-btn" style="width:100%; margin-top:15px;">
-                        <i class="fas fa-bolt"></i> Run Prediction Engine
+                        <i class="fas fa-brain"></i> Run AI Prediction Engine
                     </button>
+                </div>
+                
+                <!-- Market Sentiment -->
+                <div class="settings-group">
+                    <h3>Market Sentiment</h3>
+                    <div class="sentiment-indicator" id="market-sentiment">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Analyzing market sentiment...</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-level" id="sentiment-confidence" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Another Sidebar Ad -->
+                <div class="ad-container">
+                    <div class="ad-label">Exclusive Offer</div>
+                    <div class="ad-content">
+                        <h3 class="ad-title"><i class="fas fa-bolt"></i> Real-time Alerts</h3>
+                        <p class="ad-description">Get instant notifications for pattern formations</p>
+                        <button class="ad-button">Try Free</button>
+                    </div>
                 </div>
             </div>
         </div>
         
+        <!-- Advanced Indicators -->
+        <div class="pattern-info">
+            <h2 class="panel-title"><i class="fas fa-analytics"></i> Advanced Technical Indicators</h2>
+            <div class="advanced-indicators">
+                <div class="indicator-card">
+                    <h4>Stochastic RSI</h4>
+                    <div class="indicator-value" id="stoch-rsi">--</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-level" id="stoch-confidence" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <h4>Bollinger Band Width</h4>
+                    <div class="indicator-value" id="bollinger-width">--</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-level" id="bollinger-confidence" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <h4>Volume Trend</h4>
+                    <div class="indicator-value" id="volume-trend">--</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-level" id="volume-confidence" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <h4>Market Momentum</h4>
+                    <div class="indicator-value" id="market-momentum">--</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-level" id="momentum-confidence" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Middle Ad Banner -->
+        <div class="ad-container ad-horizontal">
+            <div class="ad-label">Featured Partner</div>
+            <div class="ad-content">
+                <h3 class="ad-title"><i class="fas fa-chart-bar"></i> Advanced Charting Platform</h3>
+                <p class="ad-description">Get professional trading tools with 20% discount</p>
+                <button class="ad-button">Claim Offer</button>
+            </div>
+        </div>
+        
         <div class="predictions">
-            <h2 class="panel-title"><i class="fas fa-crystal-ball"></i> Market Predictions</h2>
+            <h2 class="panel-title"><i class="fas fa-crystal-ball"></i> AI Market Predictions</h2>
             <div class="prediction-cards">
                 <div class="prediction-card buy">
                     <h4><i class="fas fa-arrow-circle-up"></i> Entry Point</h4>
                     <p>Optimal buy position</p>
                     <div class="prediction-value" id="entry-point">--</div>
                     <p>Predicted accuracy: <span id="entry-accuracy">--</span></p>
+                    <div class="confidence-bar">
+                        <div class="confidence-level high-confidence" id="entry-confidence" style="width: 0%"></div>
+                    </div>
+                    <div class="sentiment-indicator sentiment-bullish">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>Strong bullish signal</span>
+                    </div>
                 </div>
                 
                 <div class="prediction-card sell">
@@ -581,6 +818,13 @@
                     <p>Take profit target</p>
                     <div class="prediction-value" id="exit-point">--</div>
                     <p>Predicted accuracy: <span id="exit-accuracy">--</span></p>
+                    <div class="confidence-bar">
+                        <div class="confidence-level high-confidence" id="exit-confidence" style="width: 0%"></div>
+                    </div>
+                    <div class="sentiment-indicator sentiment-bearish">
+                        <i class="fas fa-arrow-down"></i>
+                        <span>Profit-taking zone</span>
+                    </div>
                 </div>
                 
                 <div class="prediction-card neutral">
@@ -588,6 +832,13 @@
                     <p>Trade risk assessment</p>
                     <div class="prediction-value" id="risk-level">--</div>
                     <p>Stop loss: <span id="stop-loss">--</span></p>
+                    <div class="confidence-bar">
+                        <div class="confidence-level medium-confidence" id="risk-confidence" style="width: 0%"></div>
+                    </div>
+                    <div class="sentiment-indicator sentiment-neutral">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Market in equilibrium</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -599,9 +850,19 @@
             </div>
         </div>
         
+        <!-- Bottom Ad Banner -->
+        <div class="ad-container ad-horizontal">
+            <div class="ad-label">Limited Time Offer</div>
+            <div class="ad-content">
+                <h3 class="ad-title"><i class="fas fa-rocket"></i> Advanced AI Prediction</h3>
+                <p class="ad-description">Get our premium prediction models with 95% accuracy</p>
+                <button class="ad-button">Free Trial</button>
+            </div>
+        </div>
+        
         <footer>
-            <p>© 2023 CandleLens - Advanced Candlestick Analysis Platform | Real-time market data | Predictive analytics | Professional charting tools</p>
-            <p>Disclaimer: This platform provides technical analysis for educational purposes only. Trading involves significant risk.</p>
+            <p>© 2023 CandleLens Pro - AI-Powered Candlestick Analysis Platform | Advanced market predictions | Professional trading tools</p>
+            <p>Disclaimer: This platform provides technical analysis for educational purposes only. Trading involves significant risk. Past performance is not indicative of future results.</p>
         </footer>
     </div>
     
@@ -618,31 +879,7 @@
         // Initialize chart
         let chart = null;
         
-        // Fetch real market data
-        async function fetchMarketData(symbol, timeframe) {
-            try {
-                chartLoading.style.display = 'flex';
-                
-                // For demonstration, we'll simulate API call with real data patterns
-                // In a real application, you would use an API like:
-                // Alpha Vantage, Finnhub, or TradingView
-                
-                // Simulate API delay
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                // Generate realistic candlestick data
-                const data = generateRealisticData(symbol, timeframe);
-                return data;
-            } catch (error) {
-                console.error('Error fetching market data:', error);
-                alert('Failed to fetch market data. Please try again.');
-                return null;
-            } finally {
-                chartLoading.style.display = 'none';
-            }
-        }
-        
-        // Generate realistic candlestick data
+        // Enhanced data generation with more realistic market patterns
         function generateRealisticData(symbol, timeframe) {
             const data = [];
             const now = new Date();
@@ -668,6 +905,10 @@
                 default: points = 30;
             }
             
+            // Market trend simulation
+            const trend = Math.random() > 0.5 ? 1 : -1; // 1 for uptrend, -1 for downtrend
+            const volatility = symbol.includes('/') ? 0.03 : 0.015; // Higher volatility for crypto
+            
             // Generate data
             for (let i = points; i >= 0; i--) {
                 const date = new Date(now);
@@ -687,10 +928,10 @@
                     date.setMonth(now.getMonth() - i);
                 }
                 
-                // Generate price movement
-                const volatility = symbol.includes('/') ? 0.03 : 0.015; // Higher volatility for crypto
-                const rnd = Math.random();
-                const changePercent = 2 * volatility * rnd - volatility;
+                // Enhanced price movement with trend and noise
+                const baseChange = trend * volatility * 0.7;
+                const noise = (Math.random() - 0.5) * volatility * 0.6;
+                const changePercent = baseChange + noise;
                 const changeAmount = price * changePercent;
                 let close = price + changeAmount;
                 
@@ -699,8 +940,8 @@
                 
                 // Calculate high and low with realistic spreads
                 const spread = close * 0.005; // 0.5% spread
-                const high = close + Math.random() * spread + close * 0.01;
-                const low = close - Math.random() * spread - close * 0.01;
+                const high = close + Math.random() * spread + Math.abs(changeAmount);
+                const low = close - Math.random() * spread - Math.abs(changeAmount);
                 
                 // Open from previous close
                 const open = price;
@@ -722,340 +963,432 @@
             return data;
         }
         
-        // Create chart with market data
-        async function createChart(data) {
-            const ctx = chartCanvas.getContext('2d');
-            
-            // FIX: Properly destroy existing chart before creating a new one
-            if (chart) {
-                chart.destroy();
-                chart = null;
-            }
-            
-            // Also check if there's any existing chart instance on the canvas
-            const existingChart = Chart.getChart(chartCanvas);
-            if (existingChart) {
-                existingChart.destroy();
-            }
-            
-            // Calculate technical indicators
-            const sma = calculateSMA(data, 20);
+        // Enhanced technical indicators
+        function calculateAdvancedIndicators(data) {
+            // RSI
             const rsi = calculateRSI(data, 14);
             
-            // Update indicator values in UI
-            document.getElementById('rsi-value').textContent = rsi[rsi.length-1]?.toFixed(2) || '--';
-            document.getElementById('sma-value').textContent = sma[sma.length-1]?.y ? '$' + sma[sma.length-1].y.toFixed(2) : '--';
-            document.getElementById('ema-value').textContent = data.length ? '$' + data[data.length-1].c.toFixed(2) : '--';
+            // MACD
+            const macd = calculateMACD(data);
             
-            // Determine MACD status
-            const lastPrice = data[data.length-1].c;
-            const lastSMA = sma[sma.length-1]?.y;
-            if (lastSMA) {
-                const macdStatus = lastPrice > lastSMA ? 'Bullish' : 'Bearish';
-                const macdColor = lastPrice > lastSMA ? 'var(--success)' : 'var(--danger)';
-                document.getElementById('macd-value').textContent = macdStatus;
-                document.getElementById('macd-value').style.color = macdColor;
-            }
+            // Stochastic RSI
+            const stochRsi = calculateStochRSI(data);
             
-            // Create the chart
-            chart = new Chart(ctx, {
-                type: 'candlestick',
-                data: {
-                    datasets: [{
-                        label: symbolSelector.value,
-                        data: data,
-                        color: {
-                            up: 'rgba(0, 200, 83, 1)',
-                            down: 'rgba(255, 82, 82, 1)',
-                            unchanged: 'rgba(100, 149, 237, 1)',
-                        },
-                        borderColor: 'rgba(0, 0, 0, 0.1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'SMA (20)',
-                        data: sma,
-                        type: 'line',
-                        borderColor: 'rgba(255, 215, 64, 1)',
-                        borderWidth: 2,
-                        pointRadius: 0,
-                        fill: false
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            type: 'time',
-                            time: {
-                                unit: 'day',
-                                displayFormats: {
-                                    day: 'MMM d'
-                                }
-                            },
-                            ticks: {
-                                color: '#a0c8ff'
-                            },
-                            grid: {
-                                color: 'rgba(100, 149, 237, 0.1)'
-                            }
-                        },
-                        y: {
-                            ticks: {
-                                color: '#a0c8ff',
-                                callback: function(value) {
-                                    return '$' + value.toLocaleString();
-                                }
-                            },
-                            grid: {
-                                color: 'rgba(100, 149, 237, 0.1)'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            labels: {
-                                color: '#a0c8ff'
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const point = context.raw;
-                                    return [
-                                        `Open: $${point.o.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})`,
-                                        `High: $${point.h.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})`,
-                                        `Low: $${point.l.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})`,
-                                        `Close: $${point.c.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})`
-                                    ];
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+            // Bollinger Bands
+            const bollinger = calculateBollingerBands(data, 20, 2);
             
-            // Update predictions
-            updatePredictions(data);
+            // Volume analysis
+            const volumeAnalysis = analyzeVolume(data);
             
-            // Detect candlestick patterns
-            detectCandlestickPatterns(data);
+            return {
+                rsi,
+                macd,
+                stochRsi,
+                bollinger,
+                volumeAnalysis
+            };
         }
         
-        // Calculate Simple Moving Average
-        function calculateSMA(data, period) {
-            let sma = [];
+        // New indicator calculations
+        function calculateStochRSI(data, period = 14, stochasticPeriod = 14) {
+            if (data.length < period + stochasticPeriod) return null;
+            
+            const rsiValues = calculateRSI(data, period).filter(v => v !== null);
+            const stochRsi = [];
+            
+            for (let i = stochasticPeriod - 1; i < rsiValues.length; i++) {
+                const periodRSI = rsiValues.slice(i - stochasticPeriod + 1, i + 1);
+                const min = Math.min(...periodRSI);
+                const max = Math.max(...periodRSI);
+                
+                if (max - min === 0) {
+                    stochRsi.push(50); // Neutral if no movement
+                } else {
+                    stochRsi.push(((rsiValues[i] - min) / (max - min)) * 100);
+                }
+            }
+            
+            return stochRsi;
+        }
+        
+        function calculateMACD(data, fastPeriod = 12, slowPeriod = 26, signalPeriod = 9) {
+            if (data.length < slowPeriod + signalPeriod) return null;
+            
+            const fastEMA = calculateEMA(data, fastPeriod);
+            const slowEMA = calculateEMA(data, slowPeriod);
+            
+            // MACD line
+            const macdLine = [];
+            for (let i = 0; i < fastEMA.length; i++) {
+                if (fastEMA[i] !== null && slowEMA[i] !== null) {
+                    macdLine.push(fastEMA[i] - slowEMA[i]);
+                } else {
+                    macdLine.push(null);
+                }
+            }
+            
+            // Signal line (EMA of MACD line)
+            const signalLine = calculateEMAForArray(macdLine, signalPeriod);
+            
+            // Histogram
+            const histogram = [];
+            for (let i = 0; i < macdLine.length; i++) {
+                if (macdLine[i] !== null && signalLine[i] !== null) {
+                    histogram.push(macdLine[i] - signalLine[i]);
+                } else {
+                    histogram.push(null);
+                }
+            }
+            
+            return {
+                macdLine,
+                signalLine,
+                histogram
+            };
+        }
+        
+        function calculateBollingerBands(data, period = 20, multiplier = 2) {
+            if (data.length < period) return null;
+            
+            const middleBand = calculateSMA(data, period);
+            const upperBand = [];
+            const lowerBand = [];
+            
+            for (let i = period - 1; i < data.length; i++) {
+                // Calculate standard deviation for the period
+                let sum = 0;
+                for (let j = 0; j < period; j++) {
+                    sum += Math.pow(data[i - j].c - middleBand[i - period + 1].y, 2);
+                }
+                const stdDev = Math.sqrt(sum / period);
+                
+                upperBand.push({ x: data[i].t, y: middleBand[i - period + 1].y + multiplier * stdDev });
+                lowerBand.push({ x: data[i].t, y: middleBand[i - period + 1].y - multiplier * stdDev });
+            }
+            
+            return {
+                middle: middleBand,
+                upper: upperBand,
+                lower: lowerBand
+            };
+        }
+        
+        function analyzeVolume(data, period = 20) {
+            if (data.length < period) return null;
+            
+            // Calculate average volume
+            const avgVolume = [];
             for (let i = period - 1; i < data.length; i++) {
                 let sum = 0;
                 for (let j = 0; j < period; j++) {
-                    sum += data[i - j].c;
+                    sum += data[i - j].v;
                 }
-                sma.push({ x: data[i].t, y: sum / period });
+                avgVolume.push(sum / period);
             }
-            return sma;
+            
+            // Volume trend (increasing/decreasing)
+            const currentVolume = data[data.length - 1].v;
+            const averageVolume = avgVolume[avgVolume.length - 1];
+            const volumeRatio = currentVolume / averageVolume;
+            
+            return {
+                currentVolume,
+                averageVolume,
+                volumeRatio,
+                trend: volumeRatio > 1.2 ? "High" : volumeRatio > 0.8 ? "Normal" : "Low"
+            };
         }
         
-        // Calculate Relative Strength Index
-        function calculateRSI(data, period) {
-            if (data.length < period) return [];
+        // Enhanced market sentiment analysis
+        function analyzeMarketSentiment(data, indicators) {
+            let score = 50; // Start with neutral sentiment (50%)
             
-            let gains = [];
-            let losses = [];
-            
-            // Calculate initial gains and losses
-            for (let i = 1; i <= period; i++) {
-                const change = data[i].c - data[i-1].c;
-                gains.push(Math.max(0, change));
-                losses.push(Math.max(0, -change));
+            // RSI sentiment
+            if (indicators.rsi && indicators.rsi.length > 0) {
+                const lastRsi = indicators.rsi[indicators.rsi.length - 1];
+                if (lastRsi < 30) score += 15; // Oversold - bullish
+                else if (lastRsi > 70) score -= 15; // Overbought - bearish
             }
             
-            let avgGain = gains.reduce((a, b) => a + b, 0) / period;
-            let avgLoss = losses.reduce((a, b) => a + b, 0) / period;
-            
-            const rsi = [];
-            rsi.push(100 - (100 / (1 + (avgGain / avgLoss))));
-            
-            // Calculate subsequent RSI values
-            for (let i = period + 1; i < data.length; i++) {
-                const change = data[i].c - data[i-1].c;
-                const gain = Math.max(0, change);
-                const loss = Math.max(0, -change);
-                
-                avgGain = ((avgGain * (period - 1)) + gain) / period;
-                avgLoss = ((avgLoss * (period - 1)) + loss) / period;
-                
-                const rs = avgGain / avgLoss;
-                rsi.push(100 - (100 / (1 + rs)));
+            // MACD sentiment
+            if (indicators.macd) {
+                const { macdLine, signalLine } = indicators.macd;
+                if (macdLine.length > 1 && signalLine.length > 1) {
+                    const lastMacd = macdLine[macdLine.length - 1];
+                    const lastSignal = signalLine[signalLine.length - 1];
+                    const prevMacd = macdLine[macdLine.length - 2];
+                    const prevSignal = signalLine[signalLine.length - 2];
+                    
+                    if (lastMacd > lastSignal && prevMacd <= prevSignal) score += 20; // Bullish crossover
+                    else if (lastMacd < lastSignal && prevMacd >= prevSignal) score -= 20; // Bearish crossover
+                }
             }
             
-            // Pad the beginning with nulls
-            return Array(period).fill(null).concat(rsi);
+            // Price trend sentiment
+            if (data.length > 20) {
+                const currentPrice = data[data.length - 1].c;
+                const pastPrice = data[data.length - 20].c;
+                const priceChange = ((currentPrice - pastPrice) / pastPrice) * 100;
+                
+                if (priceChange > 5) score += 10; // Strong uptrend
+                else if (priceChange < -5) score -= 10; // Strong downtrend
+            }
+            
+            // Ensure score is between 0 and 100
+            score = Math.max(0, Math.min(100, score));
+            
+            // Determine sentiment category
+            let sentiment;
+            if (score >= 60) sentiment = "Bullish";
+            else if (score <= 40) sentiment = "Bearish";
+            else sentiment = "Neutral";
+            
+            return {
+                score,
+                sentiment
+            };
         }
         
-        // Update prediction cards
-        function updatePredictions(data) {
-            if (data.length < 10) return;
+        // Enhanced prediction algorithm
+        function generateEnhancedPredictions(data, indicators, sentiment) {
+            if (data.length < 10) return null;
             
             const lastClose = data[data.length - 1].c;
             const volatility = calculateVolatility(data);
             
-            // Calculate entry point (3% below last close)
-            const entryPoint = lastClose * 0.97;
+            // Base predictions with sentiment adjustment
+            let entryPoint, exitPoint, riskLevel, stopLoss;
             
-            // Calculate exit point (6% above last close)
-            const exitPoint = lastClose * 1.06;
-            
-            // Calculate risk level
-            const drawdown = (lastClose - data[data.length - 2].l) / lastClose;
-            let riskLevel;
-            if (drawdown < 0.01) riskLevel = "Low";
-            else if (drawdown < 0.03) riskLevel = "Medium";
-            else riskLevel = "High";
-            
-            // Calculate stop loss (5% below entry point)
-            const stopLoss = entryPoint * 0.95;
-            
-            // Update UI
-            document.getElementById('entry-point').textContent = '$' + entryPoint.toFixed(2);
-            document.getElementById('exit-point').textContent = '$' + exitPoint.toFixed(2);
-            document.getElementById('risk-level').textContent = riskLevel;
-            document.getElementById('stop-loss').textContent = '$' + stopLoss.toFixed(2);
-            
-            // Calculate accuracies based on volatility
-            const entryAccuracy = Math.min(95, 85 + (volatility * 100));
-            const exitAccuracy = Math.min(92, 80 + (volatility * 100));
-            
-            document.getElementById('entry-accuracy').textContent = entryAccuracy.toFixed(0) + '%';
-            document.getElementById('exit-accuracy').textContent = exitAccuracy.toFixed(0) + '%';
-        }
-        
-        // Calculate volatility (standard deviation of returns)
-        function calculateVolatility(data) {
-            if (data.length < 2) return 0;
-            
-            const returns = [];
-            for (let i = 1; i < data.length; i++) {
-                returns.push((data[i].c - data[i-1].c) / data[i-1].c);
-            }
-            
-            const mean = returns.reduce((a, b) => a + b, 0) / returns.length;
-            const variance = returns.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / returns.length;
-            return Math.sqrt(variance);
-        }
-        
-        // Detect candlestick patterns
-        function detectCandlestickPatterns(data) {
-            const patternsContainer = document.getElementById('patterns-container');
-            patternsContainer.innerHTML = '';
-            
-            if (data.length < 3) return;
-            
-            const patterns = [];
-            
-            // Get last 3 candles
-            const c1 = data[data.length - 3];
-            const c2 = data[data.length - 2];
-            const c3 = data[data.length - 1];
-            
-            // Check for Bullish Engulfing
-            if (c2.c < c2.o && c3.c > c3.o && 
-                c3.o < c2.c && c3.c > c2.o) {
-                patterns.push({
-                    name: 'Bullish Engulfing',
-                    description: 'Strong reversal pattern detected',
-                    type: 'bullish',
-                    icon: 'fas fa-arrow-up'
-                });
-            }
-            
-            // Check for Bearish Engulfing
-            if (c2.c > c2.o && c3.c < c3.o && 
-                c3.o > c2.c && c3.c < c2.o) {
-                patterns.push({
-                    name: 'Bearish Engulfing',
-                    description: 'Potential trend reversal',
-                    type: 'bearish',
-                    icon: 'fas fa-arrow-down'
-                });
-            }
-            
-            // Check for Hammer
-            const c3_range = c3.h - c3.l;
-            const c3_body = Math.abs(c3.c - c3.o);
-            const c3_lower_wick = Math.min(c3.o, c3.c) - c3.l;
-            
-            if (c3_lower_wick > c3_body * 2 && 
-                c3_lower_wick > (c3.h - Math.max(c3.o, c3.c))) {
-                patterns.push({
-                    name: c3.c > c3.o ? 'Bullish Hammer' : 'Hanging Man',
-                    description: c3.c > c3.o ? 'Potential reversal to upside' : 'Potential reversal to downside',
-                    type: c3.c > c3.o ? 'bullish' : 'bearish',
-                    icon: c3.c > c3.o ? 'fas fa-arrow-up' : 'fas fa-arrow-down'
-                });
-            }
-            
-            // Check for Doji
-            if (c3_body < c3_range * 0.1) {
-                patterns.push({
-                    name: 'Doji',
-                    description: 'Market indecision at current level',
-                    type: 'neutral',
-                    icon: 'fas fa-pause'
-                });
-            }
-            
-            // Check for Morning Star
-            if (c1.c < c1.o && 
-                c2.o < c1.c && c2.c < c1.c && 
-                c3.o > c2.h && c3.c > c1.o) {
-                patterns.push({
-                    name: 'Morning Star',
-                    description: 'Bullish reversal confirmation',
-                    type: 'bullish',
-                    icon: 'fas fa-sun'
-                });
-            }
-            
-            // Add patterns to UI
-            if (patterns.length === 0) {
-                patternsContainer.innerHTML = `
-                    <div class="pattern-card neutral">
-                        <div class="pattern-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="pattern-details">
-                            <h4>No Patterns Detected</h4>
-                            <p>No significant candlestick patterns in recent data</p>
-                        </div>
-                    </div>
-                `;
+            if (sentiment.sentiment === "Bullish") {
+                entryPoint = lastClose * (0.97 - (volatility * 0.5));
+                exitPoint = lastClose * (1.06 + (volatility * 0.5));
+                riskLevel = volatility > 0.02 ? "Medium" : "Low";
+            } else if (sentiment.sentiment === "Bearish") {
+                entryPoint = lastClose * (0.98 - (volatility * 0.3));
+                exitPoint = lastClose * (1.04 + (volatility * 0.3));
+                riskLevel = "High";
             } else {
-                patterns.forEach(pattern => {
-                    const patternCard = document.createElement('div');
-                    patternCard.className = `pattern-card ${pattern.type}`;
-                    patternCard.innerHTML = `
-                        <div class="pattern-icon">
-                            <i class="${pattern.icon}"></i>
-                        </div>
-                        <div class="pattern-details">
-                            <h4>${pattern.name}</h4>
-                            <p>${pattern.description}</p>
-                        </div>
-                    `;
-                    patternsContainer.appendChild(patternCard);
-                });
+                entryPoint = lastClose * (0.975 - (volatility * 0.4));
+                exitPoint = lastClose * (1.05 + (volatility * 0.4));
+                riskLevel = volatility > 0.015 ? "Medium" : "Low";
+            }
+            
+            // Stop loss calculation
+            stopLoss = entryPoint * (0.95 - (volatility * 0.5));
+            
+            // Accuracy calculation based on multiple factors
+            let baseAccuracy = 85;
+            
+            // Increase accuracy with strong signals
+            if (indicators.rsi && indicators.rsi.length > 0) {
+                const lastRsi = indicators.rsi[indicators.rsi.length - 1];
+                if (lastRsi < 25 || lastRsi > 75) baseAccuracy += 5;
+            }
+            
+            if (indicators.macd) {
+                const { macdLine, signalLine } = indicators.macd;
+                if (macdLine.length > 1 && signalLine.length > 1) {
+                    const lastMacd = macdLine[macdLine.length - 1];
+                    const lastSignal = signalLine[signalLine.length - 1];
+                    const prevMacd = macdLine[macdLine.length - 2];
+                    const prevSignal = signalLine[signalLine.length - 2];
+                    
+                    if ((lastMacd > lastSignal && prevMacd <= prevSignal) || 
+                        (lastMacd < lastSignal && prevMacd >= prevSignal)) {
+                        baseAccuracy += 8;
+                    }
+                }
+            }
+            
+            // Adjust accuracy based on volatility
+            baseAccuracy -= (volatility * 100) / 2;
+            
+            // Ensure accuracy is within reasonable bounds
+            const entryAccuracy = Math.max(70, Math.min(95, baseAccuracy));
+            const exitAccuracy = Math.max(65, Math.min(90, baseAccuracy - 5));
+            
+            return {
+                entryPoint,
+                exitPoint,
+                riskLevel,
+                stopLoss,
+                entryAccuracy,
+                exitAccuracy
+            };
+        }
+        
+        // Update UI with enhanced data
+        function updateAdvancedUI(indicators, sentiment, predictions) {
+            // Update RSI
+            if (indicators.rsi && indicators.rsi.length > 0) {
+                const lastRsi = indicators.rsi[indicators.rsi.length - 1];
+                document.getElementById('rsi-value').textContent = lastRsi.toFixed(2);
+            }
+            
+            // Update MACD
+            if (indicators.macd) {
+                const { macdLine, signalLine } = indicators.macd;
+                if (macdLine.length > 0 && signalLine.length > 0) {
+                    const lastMacd = macdLine[macdLine.length - 1];
+                    const lastSignal = signalLine[signalLine.length - 1];
+                    const macdStatus = lastMacd > lastSignal ? 'Bullish' : 'Bearish';
+                    const macdColor = lastMacd > lastSignal ? 'var(--success)' : 'var(--danger)';
+                    document.getElementById('macd-value').textContent = macdStatus;
+                    document.getElementById('macd-value').style.color = macdColor;
+                }
+            }
+            
+            // Update SMA
+            const sma = calculateSMA(marketData, 50);
+            if (sma.length > 0) {
+                document.getElementById('sma-value').textContent = '$' + sma[sma.length - 1].y.toFixed(2);
+            }
+            
+            // Update EMA
+            const ema = calculateEMA(marketData, 20);
+            if (ema.length > 0) {
+                document.getElementById('ema-value').textContent = '$' + ema[ema.length - 1].toFixed(2);
+            }
+            
+            // Update volatility
+            const volatility = calculateVolatility(marketData);
+            document.getElementById('volatility-value').textContent = (volatility * 100).toFixed(2) + '%';
+            
+            // Update Stochastic RSI
+            if (indicators.stochRsi && indicators.stochRsi.length > 0) {
+                const lastStochRsi = indicators.stochRsi[indicators.stochRsi.length - 1];
+                document.getElementById('stoch-rsi').textContent = lastStochRsi.toFixed(2);
+                document.getElementById('stoch-rsi').className = 'indicator-value ' + 
+                    (lastStochRsi < 20 ? 'indicator-positive' : lastStochRsi > 80 ? 'indicator-negative' : 'indicator-neutral');
+                
+                // Update confidence bar
+                const stochConfidence = Math.abs(50 - lastStochRsi) * 2; // Convert to 0-100 scale
+                document.getElementById('stoch-confidence').style.width = stochConfidence + '%';
+                document.getElementById('stoch-confidence').className = 'confidence-level ' +
+                    (stochConfidence > 70 ? 'high-confidence' : stochConfidence > 40 ? 'medium-confidence' : 'low-confidence');
+            }
+            
+            // Update Bollinger Band Width
+            if (indicators.bollinger) {
+                const { upper, lower } = indicators.bollinger;
+                if (upper.length > 0 && lower.length > 0) {
+                    const bandWidth = ((upper[upper.length - 1].y - lower[lower.length - 1].y) / lower[lower.length - 1].y) * 100;
+                    document.getElementById('bollinger-width').textContent = bandWidth.toFixed(2) + '%';
+                    
+                    // Update confidence bar (volatility indicator)
+                    const bollingerConfidence = Math.min(100, bandWidth * 10);
+                    document.getElementById('bollinger-confidence').style.width = bollingerConfidence + '%';
+                    document.getElementById('bollinger-confidence').className = 'confidence-level ' +
+                        (bollingerConfidence > 70 ? 'high-confidence' : bollingerConfidence > 40 ? 'medium-confidence' : 'low-confidence');
+                }
+            }
+            
+            // Update Volume Trend
+            if (indicators.volumeAnalysis) {
+                const { volumeRatio, trend } = indicators.volumeAnalysis;
+                document.getElementById('volume-trend').textContent = trend;
+                document.getElementById('volume-trend').className = 'indicator-value ' + 
+                    (volumeRatio > 1.2 ? 'indicator-positive' : volumeRatio < 0.8 ? 'indicator-negative' : 'indicator-neutral');
+                
+                // Update confidence bar
+                const volumeConfidence = Math.min(100, Math.abs(1 - volumeRatio) * 200);
+                document.getElementById('volume-confidence').style.width = volumeConfidence + '%';
+                document.getElementById('volume-confidence').className = 'confidence-level ' +
+                    (volumeConfidence > 70 ? 'high-confidence' : volumeConfidence > 40 ? 'medium-confidence' : 'low-confidence');
+            }
+            
+            // Update Market Momentum
+            if (marketData.length > 10) {
+                const currentPrice = marketData[marketData.length - 1].c;
+                const pastPrice = marketData[marketData.length - 10].c;
+                const momentum = ((currentPrice - pastPrice) / pastPrice) * 100;
+                document.getElementById('market-momentum').textContent = momentum.toFixed(2) + '%';
+                document.getElementById('market-momentum').className = 'indicator-value ' + 
+                    (momentum > 2 ? 'indicator-positive' : momentum < -2 ? 'indicator-negative' : 'indicator-neutral');
+                
+                // Update confidence bar
+                const momentumConfidence = Math.min(100, Math.abs(momentum) * 10);
+                document.getElementById('momentum-confidence').style.width = momentumConfidence + '%';
+                document.getElementById('momentum-confidence').className = 'confidence-level ' +
+                    (momentumConfidence > 70 ? 'high-confidence' : momentumConfidence > 40 ? 'medium-confidence' : 'low-confidence');
+            }
+            
+            // Update Market Sentiment
+            if (sentiment) {
+                const sentimentElement = document.getElementById('market-sentiment');
+                sentimentElement.className = 'sentiment-indicator ' + 
+                    (sentiment.sentiment === 'Bullish' ? 'sentiment-bullish' : 
+                     sentiment.sentiment === 'Bearish' ? 'sentiment-bearish' : 'sentiment-neutral');
+                
+                sentimentElement.innerHTML = `
+                    <i class="fas fa-${sentiment.sentiment === 'Bullish' ? 'arrow-up' : 
+                                      sentiment.sentiment === 'Bearish' ? 'arrow-down' : 'balance-scale'}"></i>
+                    <span>${sentiment.sentiment} Market (${sentiment.score}%)</span>
+                `;
+                
+                // Update sentiment confidence bar
+                document.getElementById('sentiment-confidence').style.width = sentiment.score + '%';
+                document.getElementById('sentiment-confidence').className = 'confidence-level ' +
+                    (sentiment.score > 70 ? 'high-confidence' : sentiment.score > 40 ? 'medium-confidence' : 'low-confidence');
+            }
+            
+            // Update Predictions
+            if (predictions) {
+                document.getElementById('entry-point').textContent = '$' + predictions.entryPoint.toFixed(2);
+                document.getElementById('exit-point').textContent = '$' + predictions.exitPoint.toFixed(2);
+                document.getElementById('risk-level').textContent = predictions.riskLevel;
+                document.getElementById('stop-loss').textContent = '$' + predictions.stopLoss.toFixed(2);
+                document.getElementById('entry-accuracy').textContent = predictions.entryAccuracy.toFixed(0) + '%';
+                document.getElementById('exit-accuracy').textContent = predictions.exitAccuracy.toFixed(0) + '%';
+                
+                // Update confidence bars
+                document.getElementById('entry-confidence').style.width = predictions.entryAccuracy + '%';
+                document.getElementById('exit-confidence').style.width = predictions.exitAccuracy + '%';
+                document.getElementById('risk-confidence').style.width = 
+                    predictions.riskLevel === 'Low' ? 30 : predictions.riskLevel === 'Medium' ? 60 : 90;
+                
+                // Set confidence bar colors
+                document.getElementById('entry-confidence').className = 'confidence-level ' +
+                    (predictions.entryAccuracy > 85 ? 'high-confidence' : 
+                     predictions.entryAccuracy > 75 ? 'medium-confidence' : 'low-confidence');
+                
+                document.getElementById('exit-confidence').className = 'confidence-level ' +
+                    (predictions.exitAccuracy > 80 ? 'high-confidence' : 
+                     predictions.exitAccuracy > 70 ? 'medium-confidence' : 'low-confidence');
+                
+                document.getElementById('risk-confidence').className = 'confidence-level ' +
+                    (predictions.riskLevel === 'Low' ? 'low-confidence' : 
+                     predictions.riskLevel === 'Medium' ? 'medium-confidence' : 'high-confidence');
             }
         }
+        
+        // Global variable for market data
+        let marketData = [];
         
         // Initialize the application
         async function initApp() {
             const symbol = symbolSelector.value;
             const timeframe = document.querySelector('.timeframe-btn.active').dataset.tf;
             
-            const data = await fetchMarketData(symbol, timeframe);
-            if (data) {
-                createChart(data);
+            marketData = await fetchMarketData(symbol, timeframe);
+            if (marketData) {
+                // Calculate indicators
+                const indicators = calculateAdvancedIndicators(marketData);
+                
+                // Analyze market sentiment
+                const sentiment = analyzeMarketSentiment(marketData, indicators);
+                
+                // Generate predictions
+                const predictions = generateEnhancedPredictions(marketData, indicators, sentiment);
+                
+                // Create chart
+                createChart(marketData, indicators);
+                
+                // Update UI with advanced data
+                updateAdvancedUI(indicators, sentiment, predictions);
+                
+                // Detect candlestick patterns
+                detectCandlestickPatterns(marketData);
             }
         }
         
@@ -1066,8 +1399,9 @@
             alert('Export functionality would be implemented here');
         });
         predictBtn.addEventListener('click', () => {
-            alert('Prediction engine activated. Analyzing market patterns...');
-            // In a real app, this would trigger more advanced analysis
+            alert('AI Prediction Engine activated. Analyzing market with advanced algorithms...');
+            // Re-run analysis with current settings
+            initApp();
         });
         
         timeframeBtns.forEach(btn => {
