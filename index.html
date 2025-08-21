@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CandlePro - Advanced Candlestick Analysis</title>
+    <title>MT5 Web Trader - Advanced Trading Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <style>
         :root {
-            --primary: #1a2a3a;
-            --secondary: #0d1b28;
-            --accent: #40e0d0;
-            --accent-dark: #2bb8a9;
-            --text-primary: #f0f8ff;
-            --text-secondary: #cce6ff;
-            --success: #00c853;
-            --danger: #ff5252;
-            --warning: #ffd740;
-            --card-bg: rgba(0, 20, 40, 0.85);
-            --border: rgba(64, 224, 208, 0.3);
+            --primary: #0d1b2a;
+            --secondary: #1b263b;
+            --accent: #415a77;
+            --accent-light: #778da9;
+            --text-primary: #e0e1dd;
+            --text-secondary: #c0c4cc;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f9c74f;
+            --card-bg: rgba(26, 36, 51, 0.95);
+            --border: rgba(65, 90, 119, 0.5);
         }
 
         * {
@@ -30,7 +30,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
             color: var(--text-primary);
             min-height: 100vh;
             padding-bottom: 40px;
@@ -38,7 +38,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -46,7 +46,7 @@
         header {
             text-align: center;
             padding: 30px 0;
-            background: rgba(0, 15, 30, 0.85);
+            background: rgba(13, 27, 42, 0.9);
             border-radius: 15px;
             margin-bottom: 30px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
@@ -61,7 +61,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 Q50,10 100,0 L100,100 Q50,90 0,100 Z" fill="rgba(64, 224, 208, 0.05)"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 Q50,10 100,0 L100,100 Q50,90 0,100 Z" fill="rgba(65, 90, 119, 0.1)"/></svg>');
             background-size: cover;
             z-index: 0;
         }
@@ -74,7 +74,7 @@
         header h1 {
             font-size: 3.2rem;
             margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--accent), #6495ed, #ff6b6b);
+            background: linear-gradient(45deg, var(--accent-light), var(--success), #7209b7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -88,9 +88,107 @@
             color: var(--text-secondary);
         }
 
+        .mt5-connection-panel {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .connection-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(27, 38, 59, 0.7);
+            border: 1px solid var(--border);
+            color: white;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #1b263b, #415a77);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #415a77, #778da9);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--success), #4361ee);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, var(--danger), #b5179e);
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(27, 38, 59, 0.5);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .status-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+
+        .status-connected {
+            background: var(--success);
+            box-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
+        }
+
+        .status-disconnected {
+            background: var(--danger);
+        }
+
         .dashboard {
             display: grid;
-            grid-template-columns: 1fr 350px;
+            grid-template-columns: 1fr 400px;
             gap: 25px;
             margin-bottom: 30px;
         }
@@ -114,11 +212,11 @@
 
         .chart-title {
             font-size: 1.8rem;
-            color: var(--accent);
+            color: var(--accent-light);
         }
 
         .symbol-selector {
-            background: rgba(10, 35, 64, 0.7);
+            background: rgba(27, 38, 59, 0.7);
             border: 1px solid var(--border);
             color: white;
             padding: 8px 15px;
@@ -129,35 +227,6 @@
         .chart-actions {
             display: flex;
             gap: 15px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(45deg, #2a5298, #3a62b8);
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--success), #009624);
-        }
-
-        .btn-danger {
-            background: linear-gradient(45deg, var(--danger), #b33939);
         }
 
         #chart {
@@ -173,11 +242,13 @@
             border: 1px solid var(--border);
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
+            max-height: 600px;
         }
 
         .panel-title {
             font-size: 1.5rem;
-            color: var(--accent);
+            color: var(--accent-light);
             margin-bottom: 20px;
             padding-bottom: 12px;
             border-bottom: 2px solid var(--border);
@@ -185,7 +256,7 @@
 
         .settings-group {
             margin-bottom: 25px;
-            background: rgba(15, 40, 70, 0.3);
+            background: rgba(27, 38, 59, 0.5);
             padding: 15px;
             border-radius: 10px;
         }
@@ -193,7 +264,10 @@
         .settings-group h3 {
             font-size: 1.2rem;
             margin-bottom: 15px;
-            color: #6495ed;
+            color: var(--accent-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .settings-row {
@@ -205,10 +279,11 @@
 
         .settings-row label {
             font-weight: 500;
+            color: var(--text-secondary);
         }
 
         .settings-row select, .settings-row input {
-            background: rgba(10, 35, 64, 0.7);
+            background: rgba(27, 38, 59, 0.7);
             border: 1px solid var(--border);
             color: white;
             padding: 10px;
@@ -216,7 +291,7 @@
             width: 150px;
         }
 
-        .predictions {
+        .account-info {
             background: var(--card-bg);
             border-radius: 15px;
             padding: 25px;
@@ -225,169 +300,47 @@
             margin-bottom: 30px;
         }
 
-        .prediction-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .prediction-card {
-            background: linear-gradient(135deg, rgba(25, 55, 100, 0.7), rgba(10, 30, 60, 0.9));
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .prediction-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .prediction-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
-        }
-
-        .prediction-card h4 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-            position: relative;
-        }
-
-        .prediction-value {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 15px 0;
-            position: relative;
-        }
-
-        .prediction-card.buy .prediction-value {
-            color: var(--success);
-            text-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
-        }
-
-        .prediction-card.sell .prediction-value {
-            color: var(--danger);
-            text-shadow: 0 0 10px rgba(255, 82, 82, 0.5);
-        }
-
-        .prediction-card.neutral .prediction-value {
-            color: #6495ed;
-            text-shadow: 0 0 10px rgba(100, 149, 237, 0.5);
-        }
-
-        .pattern-info {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border);
-        }
-
-        .patterns-container {
+        .info-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
 
-        .pattern-card {
-            background: rgba(15, 40, 70, 0.7);
+        .info-card {
+            background: linear-gradient(135deg, rgba(39, 55, 77, 0.7), rgba(27, 38, 59, 0.9));
             border-radius: 12px;
             padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .pattern-card:hover {
-            background: rgba(25, 60, 100, 0.9);
-            transform: translateX(5px);
-        }
-
-        .pattern-icon {
-            font-size: 2rem;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(64, 224, 208, 0.1);
-        }
-
-        .pattern-card.bullish .pattern-icon {
-            color: var(--success);
-            border: 2px solid rgba(0, 200, 83, 0.3);
-        }
-
-        .pattern-card.bearish .pattern-icon {
-            color: var(--danger);
-            border: 2px solid rgba(255, 82, 82, 0.3);
-        }
-
-        .pattern-card.neutral .pattern-icon {
-            color: #6495ed;
-            border: 2px solid rgba(100, 149, 237, 0.3);
-        }
-
-        .pattern-info h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .pattern-info p {
-            font-size: 0.9rem;
-            color: #a0c8ff;
-        }
-
-        .timeframe-selector {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-
-        .timeframe-btn {
-            padding: 8px 20px;
-            background: rgba(25, 55, 100, 0.6);
-            color: var(--text-secondary);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .timeframe-btn:hover {
-            background: rgba(64, 224, 208, 0.2);
-        }
-
-        .timeframe-btn.active {
-            background: linear-gradient(45deg, var(--accent), #6495ed);
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        footer {
             text-align: center;
-            margin-top: 40px;
-            color: #88aadd;
-            font-size: 0.9rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--accent-light);
+        }
+
+        .info-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .info-card.balance .info-value {
+            color: var(--success);
+        }
+
+        .info-card.equity .info-value {
+            color: var(--accent-light);
+        }
+
+        .info-card.profit .info-value {
+            color: var(--warning);
+        }
+
+        .info-card.margin .info-value {
+            color: var(--danger);
         }
 
         .loading {
@@ -402,8 +355,8 @@
         .spinner {
             width: 50px;
             height: 50px;
-            border: 5px solid rgba(64, 224, 208, 0.3);
-            border-top: 5px solid var(--accent);
+            border: 5px solid rgba(65, 90, 119, 0.3);
+            border-top: 5px solid var(--success);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -413,13 +366,24 @@
             100% { transform: rotate(360deg); }
         }
 
-        @media (max-width: 1100px) {
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1200px) {
             .dashboard {
                 grid-template-columns: 1fr;
             }
             
             header h1 {
                 font-size: 2.5rem;
+            }
+            
+            .connection-form {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -428,8 +392,8 @@
                 height: 450px;
             }
             
-            .prediction-cards {
-                grid-template-columns: 1fr;
+            .info-cards {
+                grid-template-columns: 1fr 1fr;
             }
             
             .chart-header {
@@ -442,6 +406,16 @@
                 width: 100%;
                 justify-content: space-between;
             }
+            
+            .settings-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .settings-row select, .settings-row input {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -450,196 +424,162 @@
         <header>
             <div class="header-overlay"></div>
             <div class="header-content">
-                <h1><i class="fas fa-chart-line"></i> CandlePro</h1>
-                <p>Professional candlestick analysis with AI-powered predictions and real-time market insights</p>
+                <h1><i class="fas fa-chart-line"></i> MT5 Web Trader</h1>
+                <p>Advanced web-based trading platform integrated with MetaTrader 5</p>
             </div>
         </header>
         
-        <div class="timeframe-selector">
-            <button class="timeframe-btn active" data-tf="1D">1D</button>
-            <button class="timeframe-btn" data-tf="1W">1W</button>
-            <button class="timeframe-btn" data-tf="1M">1M</button>
-            <button class="timeframe-btn" data-tf="3M">3M</button>
-            <button class="timeframe-btn" data-tf="1Y">1Y</button>
-            <button class="timeframe-btn" data-tf="5Y">5Y</button>
+        <div class="mt5-connection-panel">
+            <h2 class="panel-title"><i class="fas fa-plug"></i> MT5 Account Connection</h2>
+            
+            <div class="connection-form">
+                <div class="form-group">
+                    <label for="platform">Platform</label>
+                    <input type="text" id="platform" value="MT5" disabled>
+                </div>
+                
+                <div class="form-group">
+                    <label for="server">Server</label>
+                    <input type="text" id="server" value="Exness-MT5Trial">
+                </div>
+                
+                <div class="form-group">
+                    <label for="login">Login</label>
+                    <input type="text" id="login" value="248740076">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" value="V3n9Mk!9g$">
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button class="btn btn-danger" id="disconnect-btn">
+                    <i class="fas fa-times"></i> Disconnect
+                </button>
+                <button class="btn btn-primary" id="connect-btn">
+                    <i class="fas fa-link"></i> Connect to MT5
+                </button>
+            </div>
+            
+            <div class="connection-status">
+                <div class="status-indicator status-disconnected" id="status-indicator"></div>
+                <span id="status-text">Disconnected from MT5 server</span>
+            </div>
+        </div>
+        
+        <div class="account-info">
+            <h2 class="panel-title"><i class="fas fa-wallet"></i> Account Information</h2>
+            <div class="info-cards">
+                <div class="info-card balance">
+                    <h4>Balance</h4>
+                    <div class="info-value">$10,000.00</div>
+                    <p>Available funds</p>
+                </div>
+                
+                <div class="info-card equity">
+                    <h4>Equity</h4>
+                    <div class="info-value">$10,250.00</div>
+                    <p>Current account value</p>
+                </div>
+                
+                <div class="info-card profit">
+                    <h4>Profit</h4>
+                    <div class="info-value">+$250.00</div>
+                    <p>Today's profit</p>
+                </div>
+                
+                <div class="info-card margin">
+                    <h4>Margin</h4>
+                    <div class="info-value">$1,200.00</div>
+                    <p>Used margin</p>
+                </div>
+            </div>
         </div>
         
         <div class="dashboard">
             <div class="chart-container">
                 <div class="chart-header">
                     <div>
-                        <h2 class="chart-title">BTC/USD - Bitcoin / US Dollar</h2>
+                        <h2 class="chart-title">EURUSD - Euro / US Dollar</h2>
                         <select class="symbol-selector" id="symbol-selector">
-                            <option value="BTC/USD">BTC/USD</option>
-                            <option value="ETH/USD">ETH/USD</option>
-                            <option value="XRP/USD">XRP/USD</option>
-                            <option value="AAPL">AAPL</option>
-                            <option value="MSFT">MSFT</option>
-                            <option value="GOOGL">GOOGL</option>
+                            <option value="EURUSD">EURUSD</option>
+                            <option value="GBPUSD">GBPUSD</option>
+                            <option value="USDJPY">USDJPY</option>
+                            <option value="XAUUSD">XAUUSD (Gold)</option>
+                            <option value="BTCUSD">BTCUSD (Bitcoin)</option>
+                            <option value="ETHUSD">ETHUSD (Ethereum)</option>
                         </select>
                     </div>
                     <div class="chart-actions">
-                        <button class="btn" id="refresh-btn"><i class="fas fa-sync-alt"></i> Refresh</button>
-                        <button class="btn btn-primary"><i class="fas fa-download"></i> Export</button>
+                        <button class="btn" id="refresh-btn">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                        <button class="btn btn-primary" id="trade-btn">
+                            <i class="fas fa-exchange-alt"></i> Trade
+                        </button>
                     </div>
                 </div>
                 <div class="loading" id="chart-loading">
                     <div class="spinner"></div>
-                    <p>Loading market data...</p>
+                    <p>Connecting to MT5 market data...</p>
                 </div>
                 <canvas id="chart"></canvas>
             </div>
             
             <div class="tools-panel">
-                <h2 class="panel-title"><i class="fas fa-tools"></i> Analysis Tools</h2>
+                <h2 class="panel-title"><i class="fas fa-tools"></i> Trading Tools</h2>
                 
                 <div class="settings-group">
-                    <h3>Technical Indicators</h3>
+                    <h3><i class="fas fa-chart-line"></i> Technical Indicators</h3>
                     <div class="settings-row">
                         <label for="rsi">RSI (14):</label>
-                        <span id="rsi-value">42.6</span>
+                        <span id="rsi-value">54.32</span>
                     </div>
                     <div class="settings-row">
                         <label for="macd">MACD:</label>
                         <span id="macd-value">Bullish</span>
                     </div>
                     <div class="settings-row">
-                        <label for="sma">SMA (50):</label>
-                        <span id="sma-value">$38,240</span>
-                    </div>
-                    <div class="settings-row">
-                        <label for="ema">EMA (20):</label>
-                        <span id="ema-value">$38,850</span>
+                        <label for="stoch">Stochastic:</label>
+                        <span id="stoch-value">68.45</span>
                     </div>
                 </div>
                 
                 <div class="settings-group">
-                    <h3>Chart Settings</h3>
+                    <h3><i class="fas fa-sliders-h"></i> Trade Settings</h3>
                     <div class="settings-row">
-                        <label for="theme">Theme:</label>
-                        <select id="theme">
-                            <option>Dark</option>
-                            <option>Light</option>
-                            <option>Blue</option>
-                        </select>
+                        <label for="volume">Volume (Lots):</label>
+                        <input type="number" id="volume" value="0.1" min="0.01" step="0.01">
                     </div>
                     <div class="settings-row">
-                        <label for="candle-style">Candle Style:</label>
-                        <select id="candle-style">
-                            <option>Standard</option>
-                            <option>Hollow</option>
-                            <option>Heikin-Ashi</option>
-                        </select>
+                        <label for="stop-loss">Stop Loss (pips):</label>
+                        <input type="number" id="stop-loss" value="20">
                     </div>
                     <div class="settings-row">
-                        <label for="overlay">Overlay:</label>
-                        <select id="overlay">
-                            <option>None</option>
-                            <option>Volume Profile</option>
-                            <option>Fibonacci</option>
-                        </select>
+                        <label for="take-profit">Take Profit (pips):</label>
+                        <input type="number" id="take-profit" value="40">
                     </div>
                 </div>
                 
                 <div class="settings-group">
-                    <h3>Prediction Settings</h3>
-                    <div class="settings-row">
-                        <label for="model">Prediction Model:</label>
-                        <select id="model">
-                            <option>Hybrid AI</option>
-                            <option>Neural Network</option>
-                            <option>ARIMA</option>
-                        </select>
-                    </div>
-                    <div class="settings-row">
-                        <label for="horizon">Time Horizon:</label>
-                        <select id="horizon">
-                            <option>Short-term</option>
-                            <option>Medium-term</option>
-                            <option>Long-term</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary" style="width:100%; margin-top:15px;">
-                        <i class="fas fa-bolt"></i> Run Prediction Engine
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="predictions">
-            <h2 class="panel-title"><i class="fas fa-crystal-ball"></i> Market Predictions</h2>
-            <div class="prediction-cards">
-                <div class="prediction-card buy">
-                    <h4><i class="fas fa-arrow-circle-up"></i> Entry Point</h4>
-                    <p>Optimal buy position</p>
-                    <div class="prediction-value">$38,150</div>
-                    <p>Predicted accuracy: 92%</p>
-                </div>
-                
-                <div class="prediction-card sell">
-                    <h4><i class="fas fa-arrow-circle-down"></i> Exit Point</h4>
-                    <p>Take profit target</p>
-                    <div class="prediction-value">$42,800</div>
-                    <p>Predicted accuracy: 88%</p>
-                </div>
-                
-                <div class="prediction-card neutral">
-                    <h4><i class="fas fa-percentage"></i> Risk Level</h4>
-                    <p>Trade risk assessment</p>
-                    <div class="prediction-value">Medium</div>
-                    <p>Stop loss: $36,700</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="pattern-info">
-            <h2 class="panel-title"><i class="fas fa-shapes"></i> Detected Candlestick Patterns</h2>
-            <div class="patterns-container">
-                <div class="pattern-card bullish">
-                    <div class="pattern-icon">
-                        <i class="fas fa-arrow-up"></i>
-                    </div>
-                    <div class="pattern-details">
-                        <h4>Bullish Engulfing</h4>
-                        <p>Strong reversal pattern detected</p>
-                    </div>
-                </div>
-                
-                <div class="pattern-card bullish">
-                    <div class="pattern-icon">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <div class="pattern-details">
-                        <h4>Morning Star</h4>
-                        <p>Bullish reversal confirmation</p>
-                    </div>
-                </div>
-                
-                <div class="pattern-card bearish">
-                    <div class="pattern-icon">
-                        <i class="fas fa-arrow-down"></i>
-                    </div>
-                    <div class="pattern-details">
-                        <h4>Bearish Harami</h4>
-                        <p>Potential trend reversal</p>
-                    </div>
-                </div>
-                
-                <div class="pattern-card neutral">
-                    <div class="pattern-icon">
-                        <i class="fas fa-pause"></i>
-                    </div>
-                    <div class="pattern-details">
-                        <h4>Doji</h4>
-                        <p>Market indecision at resistance</p>
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-primary" style="flex: 1;">
+                            <i class="fas fa-arrow-up"></i> Buy
+                        </button>
+                        <button class="btn btn-danger" style="flex: 1;">
+                            <i class="fas fa-arrow-down"></i> Sell
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2023 CandlePro - Professional Candlestick Analysis Platform | Real-time market data | Predictive analytics | Advanced charting tools</p>
-            <p>Disclaimer: This platform provides technical analysis for educational purposes only. Trading involves significant risk.</p>
+            <p>© 2023 MT5 Web Trader - Advanced Trading Platform | Integrated with MetaTrader 5</p>
+            <p>Disclaimer: This platform provides analysis for educational purposes only. Trading involves significant risk. Past performance is not indicative of future results.</p>
         </footer>
     </div>
     
@@ -647,37 +587,63 @@
         // DOM Elements
         const chartCanvas = document.getElementById('chart');
         const chartLoading = document.getElementById('chart-loading');
+        const connectBtn = document.getElementById('connect-btn');
+        const disconnectBtn = document.getElementById('disconnect-btn');
+        const statusIndicator = document.getElementById('status-indicator');
+        const statusText = document.getElementById('status-text');
         const symbolSelector = document.getElementById('symbol-selector');
         const refreshBtn = document.getElementById('refresh-btn');
-        const timeframeBtns = document.querySelectorAll('.timeframe-btn');
+        const tradeBtn = document.getElementById('trade-btn');
         
         // Initialize chart
         let chart = null;
+        let connected = false;
         
-        // Generate sample candlestick data
-        function generateCandlestickData() {
+        // Generate realistic market data (simulating MT5 data)
+        function generateMarketData() {
             const data = [];
-            let date = new Date(2023, 0, 1);
-            let open = 35000;
+            let date = new Date();
+            let price = 1.0850; // Starting price for EURUSD
+            
+            // Adjust date to start from 90 periods ago
+            date.setHours(date.getHours() - 90);
+            
+            // Market trend variables
+            let trend = Math.random() > 0.5 ? 1 : -1; // 1 for uptrend, -1 for downtrend
+            let volatility = 0.0003; // Base volatility for Forex
             
             for (let i = 0; i < 90; i++) {
-                // Generate random price movement with realistic trends
-                const volatility = 0.02;
-                const rnd = Math.random();
-                const changePercent = 2 * volatility * rnd - volatility;
-                const changeAmount = open * changePercent;
-                let close = open + changeAmount;
+                // Adjust volatility based on recent price movement
+                if (i > 5) {
+                    const recentChange = Math.abs(data[i-1].c - data[i-5].c);
+                    volatility = 0.0002 + recentChange * 2;
+                }
                 
-                // Ensure close is positive
+                // Generate price movement with trend influence
+                const randomFactor = (Math.random() - 0.5) * 2;
+                const changeAmount = price * volatility * randomFactor;
+                
+                // Add trend influence (gradual trend)
+                const trendInfluence = price * 0.0001 * trend;
+                
+                let close = price + changeAmount + trendInfluence;
+                
+                // Ensure close is positive and reasonable
                 close = Math.abs(close);
+                if (close > 2.0) close = 1.9;
+                if (close < 0.5) close = 0.6;
                 
-                // Calculate high and low
-                const high = Math.max(open, close) + Math.random() * 500;
-                const low = Math.min(open, close) - Math.random() * 500;
+                // Calculate high and low with realistic values
+                const spread = 0.0001; // Standard spread for EURUSD
+                const high = close + Math.random() * spread + Math.abs(changeAmount) * 0.5;
+                const low = close - Math.random() * spread - Math.abs(changeAmount) * 0.5;
+                
+                // Open from previous close (or starting price for first element)
+                const open = i === 0 ? price : data[i-1].c;
                 
                 // Add to data
                 data.push({
-                    t: date,
+                    t: new Date(date),
                     o: open,
                     h: high,
                     l: low,
@@ -685,15 +651,19 @@
                 });
                 
                 // Prepare next candle
-                open = close;
-                date = new Date(date);
-                date.setDate(date.getDate() + 1);
+                price = close;
+                date.setHours(date.getHours() + 1);
+                
+                // Randomly change trend occasionally
+                if (Math.random() < 0.05) {
+                    trend *= -1;
+                }
             }
             
             return data;
         }
         
-        // Create chart
+        // Create chart with market data
         function createChart() {
             const ctx = chartCanvas.getContext('2d');
             
@@ -702,24 +672,20 @@
                 chart.destroy();
             }
             
-            const candlestickData = generateCandlestickData();
-            
-            // Add prediction markers
-            const entryPoint = candlestickData[65];
-            const exitPoint = candlestickData[75];
+            const candlestickData = generateMarketData();
             
             chart = new Chart(ctx, {
                 type: 'candlestick',
                 data: {
                     datasets: [{
-                        label: 'BTC/USD',
+                        label: 'EURUSD',
                         data: candlestickData,
                         color: {
-                            up: 'rgba(0, 200, 83, 1)',
-                            down: 'rgba(255, 82, 82, 1)',
-                            unchanged: 'rgba(100, 149, 237, 1)',
+                            up: 'rgba(76, 201, 240, 1)',
+                            down: 'rgba(247, 37, 133, 1)',
+                            unchanged: 'rgba(249, 199, 79, 1)',
                         },
-                        borderColor: 'rgba(0, 0, 0, 0.1)',
+                        borderColor: 'rgba(0, 0, 0, 0.2)',
                         borderWidth: 1
                     }]
                 },
@@ -730,27 +696,27 @@
                         x: {
                             type: 'time',
                             time: {
-                                unit: 'day',
+                                unit: 'hour',
                                 displayFormats: {
-                                    day: 'MMM d'
+                                    hour: 'MMM dd HH:mm'
                                 }
                             },
                             ticks: {
-                                color: '#a0c8ff'
+                                color: '#c0c4cc'
                             },
                             grid: {
-                                color: 'rgba(100, 149, 237, 0.1)'
+                                color: 'rgba(65, 90, 119, 0.2)'
                             }
                         },
                         y: {
                             ticks: {
-                                color: '#a0c8ff',
+                                color: '#c0c4cc',
                                 callback: function(value) {
-                                    return '$' + value.toLocaleString();
+                                    return value.toFixed(4);
                                 }
                             },
                             grid: {
-                                color: 'rgba(100, 149, 237, 0.1)'
+                                color: 'rgba(65, 90, 119, 0.2)'
                             }
                         }
                     },
@@ -763,90 +729,11 @@
                                 label: function(context) {
                                     const point = context.raw;
                                     return [
-                                        `Open: $${point.o.toLocaleString()}`,
-                                        `High: $${point.h.toLocaleString()}`,
-                                        `Low: $${point.l.toLocaleString()}`,
-                                        `Close: $${point.c.toLocaleString()}`
+                                        `Open: ${point.o.toFixed(4)}`,
+                                        `High: ${point.h.toFixed(4)}`,
+                                        `Low: ${point.l.toFixed(4)}`,
+                                        `Close: ${point.c.toFixed(4)}`
                                     ];
-                                }
-                            }
-                        },
-                        annotation: {
-                            annotations: {
-                                entryPoint: {
-                                    type: 'point',
-                                    xValue: entryPoint.t,
-                                    yValue: entryPoint.l - 500,
-                                    pointStyle: 'triangle',
-                                    backgroundColor: 'rgba(0, 200, 83, 0.7)',
-                                    borderColor: 'rgba(0, 200, 83, 1)',
-                                    borderWidth: 2,
-                                    radius: 10,
-                                    label: {
-                                        display: true,
-                                        content: 'Buy Entry',
-                                        position: 'bottom',
-                                        backgroundColor: 'rgba(0, 200, 83, 0.7)',
-                                        color: '#fff',
-                                        font: {
-                                            size: 12,
-                                            weight: 'bold'
-                                        }
-                                    }
-                                },
-                                exitPoint: {
-                                    type: 'point',
-                                    xValue: exitPoint.t,
-                                    yValue: exitPoint.h + 500,
-                                    pointStyle: 'triangle',
-                                    backgroundColor: 'rgba(255, 82, 82, 0.7)',
-                                    borderColor: 'rgba(255, 82, 82, 1)',
-                                    borderWidth: 2,
-                                    radius: 10,
-                                    rotation: 180,
-                                    label: {
-                                        display: true,
-                                        content: 'Take Profit',
-                                        position: 'top',
-                                        backgroundColor: 'rgba(255, 82, 82, 0.7)',
-                                        color: '#fff',
-                                        font: {
-                                            size: 12,
-                                            weight: 'bold'
-                                        }
-                                    }
-                                },
-                                predictionLine: {
-                                    type: 'line',
-                                    mode: 'horizontal',
-                                    scaleID: 'y',
-                                    value: entryPoint.c,
-                                    borderColor: 'rgba(0, 200, 83, 0.5)',
-                                    borderWidth: 2,
-                                    borderDash: [5, 5],
-                                    label: {
-                                        display: true,
-                                        content: 'Entry Level',
-                                        position: 'start',
-                                        backgroundColor: 'rgba(0, 200, 83, 0.7)',
-                                        color: '#fff'
-                                    }
-                                },
-                                resistanceLine: {
-                                    type: 'line',
-                                    mode: 'horizontal',
-                                    scaleID: 'y',
-                                    value: exitPoint.c,
-                                    borderColor: 'rgba(255, 82, 82, 0.5)',
-                                    borderWidth: 2,
-                                    borderDash: [5, 5],
-                                    label: {
-                                        display: true,
-                                        content: 'Target Level',
-                                        position: 'end',
-                                        backgroundColor: 'rgba(255, 82, 82, 0.7)',
-                                        color: '#fff'
-                                    }
                                 }
                             }
                         }
@@ -858,31 +745,66 @@
             chartLoading.style.display = 'none';
         }
         
-        // Initialize the application
-        function initApp() {
-            // Show loading spinner
-            chartLoading.style.display = 'flex';
-            
-            // Small delay to simulate data loading
-            setTimeout(() => {
+        // Update connection status
+        function updateConnectionStatus(isConnected) {
+            connected = isConnected;
+            if (isConnected) {
+                statusIndicator.className = 'status-indicator status-connected';
+                statusText.textContent = 'Connected to MT5 server';
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = false;
                 createChart();
-            }, 1000);
+            } else {
+                statusIndicator.className = 'status-indicator status-disconnected';
+                statusText.textContent = 'Disconnected from MT5 server';
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+                chartLoading.style.display = 'flex';
+            }
         }
         
         // Event Listeners
-        symbolSelector.addEventListener('change', initApp);
-        refreshBtn.addEventListener('click', initApp);
+        connectBtn.addEventListener('click', () => {
+            chartLoading.style.display = 'flex';
+            setTimeout(() => {
+                updateConnectionStatus(true);
+            }, 2000);
+        });
         
-        timeframeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                timeframeBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                initApp();
-            });
+        disconnectBtn.addEventListener('click', () => {
+            updateConnectionStatus(false);
+        });
+        
+        symbolSelector.addEventListener('change', () => {
+            if (connected) {
+                chartLoading.style.display = 'flex';
+                setTimeout(() => {
+                    createChart();
+                }, 1000);
+            }
+        });
+        
+        refreshBtn.addEventListener('click', () => {
+            if (connected) {
+                chartLoading.style.display = 'flex';
+                setTimeout(() => {
+                    createChart();
+                }, 800);
+            }
+        });
+        
+        tradeBtn.addEventListener('click', () => {
+            if (connected) {
+                alert('Trade dialog would open here. In a real application, this would connect to your MT5 account to execute trades.');
+            } else {
+                alert('Please connect to your MT5 account first.');
+            }
         });
         
         // Initialize on load
-        window.addEventListener('load', initApp);
+        window.addEventListener('load', () => {
+            updateConnectionStatus(false);
+        });
     </script>
 </body>
 </html>
